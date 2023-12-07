@@ -11,6 +11,13 @@
 #include <sys/stat.h>
 #include <errno.h>
 
+#define DELIMITER " \t\n"
+extern char **environ;
+
+char *_readprompt(void);
+char **_tokenize(char *line_);
+void _free2D(char **a);
+int _executecmd(char **cmd, char **argv);
 
 
 
