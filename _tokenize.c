@@ -9,21 +9,39 @@
 char **_tokenize(char *line)
 {
 	char **tokens = NULL;
-	char *token = NULL;
-	int i = 0;
+	char *token = NULL, *tmp_;
+	int i = 0, count = 0;
 
 	if (!line)
 		return (NULL);
+	tmp_ = strdup(line);
+	token = strtok(tmp_, DELIMITER);
+	if (!token)
+	{
+		free(line), line = NULL;
+		free(tmp_), tmp_ = NULL;
+		return (NULL);
+	}
+	while (token)
+	{
+		count++;
+		token = strtok(NULL, DELIMITER);
+	}
+	free(tmp_);
+	tokens = malloc(sizeof(char *) * (count + 1));
+	if (!tokens)
+	{
+		free(line);
+		return (NULL);
+	}
 	token = strtok(line, DELIMITER);
 	while (token)
 	{
-		i++;
-		tokens = realloc(tokens, i * sizeof(char *));
-		if (!tokens)
-			return (NULL);
-		tokens[i - 1] = token;
+		tokens[i] = strdup(token);
 		token = strtok(NULL, DELIMITER);
+		i++;
 	}
+	free(line), line = NULL;
 	tokens[i] = NULL;
 	return (tokens);
 }

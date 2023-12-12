@@ -14,10 +14,21 @@
 #define DELIMITER " \t\n"
 extern char **environ;
 
-char *_readprompt(void);
-char **_tokenize(char *line_);
-void _free2D(char **a);
-int _executecmd(char **cmd, char **argv);
+char *_itoa(int n);
+void _perror(char *name, char *cmd, int idx);
+void reverse_str(char *str, int len);
+char *read_prompt(void);
+char **tokensizer(char *str);
+char **_tokenize(char *line);
+void free2D(char **arr);
+int _executecmd(char **cmd, char **argv, int idx);
+char *_getenv(char *var);
+char *_getpath(char *cmd);
+int _isunixcmd(char *cmd);
+int _is_positive(const char *c);
+void handle_unixcmd(char **cmd, char **argv, int *status, int idx);
+void exit_shell(char **cmd, char **argv, int *status, int idx);
+void print_env(char **cmd, int *status);
 
 
 
