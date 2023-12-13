@@ -9,7 +9,7 @@
 char **_tokenize(char *line)
 {
 	char **tokens = NULL;
-	char *token = NULL, *tmp_;
+	char *token = NULL, *tmp_ = NULL;
 	int i = 0, count = 0;
 
 	if (!line)
