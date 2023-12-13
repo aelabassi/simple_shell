@@ -30,7 +30,6 @@ int main(int argc, char **argv)
 		else
 			status = _executecmd(commands, argv, idx);
 
-		_free2D(commands);
 	}
 
 
