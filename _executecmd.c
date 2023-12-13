@@ -18,7 +18,7 @@ int _executecmd(char **cmd, char **argv, int idx)
 	if (!fcmd)
 	{
 		_perror(argv[0], cmd[0], idx);
-		free2D(cmd);
+		_free2D(cmd);
 		return (127);
 	}
 
@@ -30,7 +30,7 @@ int _executecmd(char **cmd, char **argv, int idx)
 		{
 			free(fcmd), fcmd = NULL;
 			perror(argv[0]);
-			free2D(cmd);
+			_free2D(cmd);
 			exit(127);
 		}
 
@@ -38,7 +38,7 @@ int _executecmd(char **cmd, char **argv, int idx)
 	else
 	{
 		waitpid(child, &status, 0);
-		free2D(cmd);
+		_free2D(cmd);
 		free(fcmd), fcmd =  NULL;
 	}
 

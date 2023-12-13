@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _is_positive - checks if the entered char
+ * _is_positive_status - checks if the entered char
  * is between 0 and 9 strict
  * @c: char
  * Return: boolean: 1 if pos, and 0 otherwise
 */
-int _is_positive(const char *c)
+int _is_positive_status(const char *c)
 {
 	int i;
 
@@ -41,17 +41,17 @@ char *_itoa(int n)
 		}
 	}
 	buff[i] = '\0';
-	reverse_str(buff, i);
+	_reverse_str(buff, i);
 	return (strdup(buff));
 
 }
 
 /**
- * reverse_str - reverses a string
+ * _reverse_str - reverses a string
  * @str: string to reverse
  * @len: the length of the string
 */
-void reverse_str(char *str, int len)
+void _reverse_str(char *str, int len)
 {
 	char tmp;
 	int start = 0;
@@ -68,20 +68,20 @@ void reverse_str(char *str, int len)
 }
 
 /**
- * exit_shell - handle the exit command
+ * _exit_shell - handle the exit command
  * @cmd: command entered
  * @argv: arguments of exit
  * @status: status of the exit
  * @idx: index of the command in the shell
 */
-void exit_shell(char **cmd, char **argv, int *status, int idx)
+void _exit_shell(char **cmd, char **argv, int *status, int idx)
 	{
 		int exit_value = (*status);
 		char *index, mssg[] = ": exit: Illegal number: ";
 
 		if (cmd[1])
 		{
-			if (_is_positive(cmd[1]))
+			if (_is_positive_status(cmd[1]))
 			{
 				exit_value = atoi(cmd[1]);
 			}
@@ -96,22 +96,22 @@ void exit_shell(char **cmd, char **argv, int *status, int idx)
 				write(STDERR_FILENO, "\n", 1);
 
 				free(index);
-				free2D(cmd);
+				_free2D(cmd);
 				*status = 2;
 				return;
 			}
 		}
 
-		free2D(cmd);
+		_free2D(cmd);
 		exit(exit_value);
 	}
 
 /**
- * print_env - print the env variable
+ * _print_env - print the env variable
  * @cmd: the command entered
  * @status: status after typing a command
 */
-void print_env(char **cmd, int *status)
+void _print_env(char **cmd, int *status)
 {
 		int i;
 
@@ -120,6 +120,6 @@ void print_env(char **cmd, int *status)
 			write(STDOUT_FILENO, environ[i], strlen(environ[i]));
 			write(STDOUT_FILENO, "\n", 1);
 		}
-		free2D(cmd);
+		_free2D(cmd);
 		*status = 0;
 }
