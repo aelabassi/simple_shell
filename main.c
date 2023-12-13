@@ -11,7 +11,6 @@ int main(int argc, char **argv)
 	char *line = NULL, **commands = NULL;
 	int status = 0, idx = 0;
 	(void)argc;
-	(void)argv;
 
 	while (1)
 	{
